@@ -38,7 +38,16 @@ void UGMCAbilityAnimInstance::NativeInitializeAnimation()
 			// Create a default for in-editor preview.
 			if (!IsValid(GMCPawn))
 			{
-				GMCPawn = EditorPreviewClass->GetDefaultObject<AGMC_Pawn>();
+				if (IsValid(EditorPreviewClass))
+				{
+					GMCPawn = EditorPreviewClass->GetDefaultObject<AGMC_Pawn>();
+				}
+				else
+				{
+					// Give up, abort, just use a valid default pawn (and reset our preview class setting).
+					GMCPawn = AGMC_Pawn::StaticClass()->GetDefaultObject<AGMC_Pawn>();
+					EditorPreviewClass = AGMC_Pawn::StaticClass();
+				}
 
 				// Since we might have overridden the editor preview class with something that already has an ability component,
 				// try getting the ability component again.
