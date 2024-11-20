@@ -945,11 +945,14 @@ void UGMC_AbilitySystemComponent::ClientHandlePendingEffect() {
 	// just like the Outer ones, but will be preserved in the movement history.
 	auto RPCOperations = QueuedEffectOperations.GetQueuedRPCOperations();
 	for (auto& Operation : RPCOperations) {
-		if (ShouldProcessEffectOperation(Operation, false))
+		if (QueuedEffectOperations.IsAcknowledged(Operation.GetOperationId()))
 		{
 			ProcessEffectOperation(Operation);
-			QueuedEffectOperations.Acknowledge(Operation.GetOperationId());
 			QueuedEffectOperations.RemoveOperationById(Operation.GetOperationId());
+		}
+		if (ShouldProcessEffectOperation(Operation, false))
+		{
+			QueuedEffectOperations.Acknowledge(Operation.GetOperationId());
 		}
 	}
 }
