@@ -1059,6 +1059,12 @@ void UGMC_AbilitySystemComponent::SendTaskDataToActiveAbility(bool bFromMovement
 	}
 }
 
+void UGMC_AbilitySystemComponent::AddActiveAbility(int AbilityId, UGMCAbility* Ability)
+{
+	ActiveAbilities.Add(AbilityId, Ability);
+
+	if (HasAuthority()) { RPCConfirmAbilityActivation(AbilityId); }
+}
 
 bool UGMC_AbilitySystemComponent::CheckActivationTags(const UGMCAbility* Ability) const {
 

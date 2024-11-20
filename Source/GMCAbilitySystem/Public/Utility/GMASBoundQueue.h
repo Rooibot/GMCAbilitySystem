@@ -21,7 +21,7 @@ enum class EGMASBoundQueueOperationType : uint8
 };
 
 USTRUCT(BlueprintType)
-struct FGMASBoundQueueOperationIdSet
+struct GMCABILITYSYSTEM_API FGMASBoundQueueOperationIdSet
 {
 	GENERATED_BODY()
 

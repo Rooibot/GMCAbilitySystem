@@ -511,6 +511,12 @@ protected:
 
 	void SendTaskDataToActiveAbility(bool bFromMovement);
 
+	TMap<int, UGMCAbility*> GetActiveAbilities() const { return ActiveAbilities; };
+
+	int GenerateAbilityID() const {return ActionTimer * 100;}
+
+	void AddActiveAbility(int AbilityId, UGMCAbility* Ability);
+
 private:
 
 	bool bStartingEffectsApplied = false;
@@ -565,8 +571,6 @@ private:
 
 	UPROPERTY()
 	TMap<FGameplayTag, float> ActiveCooldowns;
-
-	int GenerateAbilityID() const {return ActionTimer * 100;}
 	
 	// Set Attributes to either a default object or a provided TSubClassOf<UGMCAttributeSet> in BP defaults
 	// This must run before variable binding
