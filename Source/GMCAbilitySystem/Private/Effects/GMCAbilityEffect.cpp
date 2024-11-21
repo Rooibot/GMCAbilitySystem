@@ -74,7 +74,7 @@ void UGMCAbilityEffect::StartEffect()
 	{
 		for (const FGMCAttributeModifier& Modifier : EffectData.Modifiers)
 		{
-			OwnerAbilityComponent->ApplyAbilityEffectModifier(Modifier, true);
+			OwnerAbilityComponent->ApplyAbilityEffectModifier(Modifier, true, false, SourceAbilityComponent);
 		}
 		EndEffect();
 		return;
@@ -86,7 +86,7 @@ void UGMCAbilityEffect::StartEffect()
 		EffectData.bNegateEffectAtEnd = true;
 		for (const FGMCAttributeModifier& Modifier : EffectData.Modifiers)
 		{
-			OwnerAbilityComponent->ApplyAbilityEffectModifier(Modifier, false);
+			OwnerAbilityComponent->ApplyAbilityEffectModifier(Modifier, false, false, SourceAbilityComponent);
 		}
 	}
 
@@ -128,7 +128,7 @@ void UGMCAbilityEffect::EndEffect()
 		}
 	}
 	
-	RemoveTagsFromOwner();
+	RemoveTagsFromOwner(EffectData.bPreserveGrantedTagsIfMultiple);
 	RemoveAbilitiesFromOwner();
 }
 
@@ -201,7 +201,7 @@ void UGMCAbilityEffect::PeriodTick()
 	if (AttributeDynamicCondition()) {
 		for (const FGMCAttributeModifier& AttributeModifier : EffectData.Modifiers)
 		{
-			OwnerAbilityComponent->ApplyAbilityEffectModifier(AttributeModifier, true);
+			OwnerAbilityComponent->ApplyAbilityEffectModifier(AttributeModifier, true, false, SourceAbilityComponent);
 		}
 	}
 }
@@ -231,14 +231,22 @@ void UGMCAbilityEffect::AddTagsToOwner()
 
 void UGMCAbilityEffect::RemoveTagsFromOwner(bool bPreserveOnMultipleInstances)
 {
-
-	if (bPreserveOnMultipleInstances && EffectData.EffectTag.IsValid()) {
-		TArray<UGMCAbilityEffect*> ActiveEffect = OwnerAbilityComponent->GetActivesEffectByTag(EffectData.EffectTag);
-		
-		if (ActiveEffect.Num() > 1) {
-			return;
+	if (bPreserveOnMultipleInstances)
+	{
+		if (EffectData.EffectTag.IsValid()) {
+			TArray<UGMCAbilityEffect*> ActiveEffect = OwnerAbilityComponent->GetActiveEffectsByTag(EffectData.EffectTag);
+			
+			if (ActiveEffect.Num() > 1) {
+				return;
+			}
+		}
+		else
+		{
+			UE_LOG(LogGMCAbilitySystem, Warning, TEXT("Effect Tag is not valid with PreserveMultipleInstances in UGMCAbilityEffect::RemoveTagsFromOwner"));
 		}
 	}
+
+
 	
 	for (const FGameplayTag Tag : EffectData.GrantedTags)
 	{
