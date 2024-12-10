@@ -34,7 +34,7 @@ void UGMCAbilityTask_SetTargetDataFloat::ProgressTask(FInstancedStruct& TaskData
 void UGMCAbilityTask_SetTargetDataFloat::ClientProgressTask()
 {
 	FGMCAbilityTaskTargetDataFloat TaskData;
-	TaskData.TaskType = EGMCAbilityTaskDataType::Progress;
+	TaskData.TaskType = EGMCAbilityTaskDataType::Progress_Task;
 	TaskData.AbilityID = Ability->GetAbilityID();
 	TaskData.TaskID = TaskID;
 	TaskData.Target = Target;

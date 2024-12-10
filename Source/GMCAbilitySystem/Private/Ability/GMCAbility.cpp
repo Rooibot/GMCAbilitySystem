@@ -152,7 +152,7 @@ void UGMCAbility::HandleTaskData(int TaskID, FInstancedStruct TaskData)
 	const FGMCAbilityTaskData TaskDataFromInstance = TaskData.Get<FGMCAbilityTaskData>();
 	if (RunningTasks.Contains(TaskID) && RunningTasks[TaskID] != nullptr)
 	{
-		if (TaskDataFromInstance.TaskType == EGMCAbilityTaskDataType::Progress)
+		if (TaskDataFromInstance.TaskType == EGMCAbilityTaskDataType::Progress_Task)
 		{
 			RunningTasks[TaskID]->ProgressTask(TaskData);
 		}

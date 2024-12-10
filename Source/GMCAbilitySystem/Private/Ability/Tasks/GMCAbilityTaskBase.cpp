@@ -58,7 +58,7 @@ void UGMCAbilityTaskBase::AncillaryTick(float DeltaTime){
 void UGMCAbilityTaskBase::ClientProgressTask()
 {
 	FGMCAbilityTaskData TaskData;
-	TaskData.TaskType = EGMCAbilityTaskDataType::Progress;
+	TaskData.TaskType = EGMCAbilityTaskDataType::Progress_Task;
 	TaskData.AbilityID = Ability->GetAbilityID();
 	TaskData.TaskID = TaskID;
 	const FInstancedStruct TaskDataInstance = FInstancedStruct::Make(TaskData);

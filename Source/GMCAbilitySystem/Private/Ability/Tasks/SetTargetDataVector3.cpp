@@ -34,7 +34,7 @@ void UGMCAbilityTask_SetTargetDataVector3::ProgressTask(FInstancedStruct& TaskDa
 void UGMCAbilityTask_SetTargetDataVector3::ClientProgressTask()
 {
 	FGMCAbilityTaskTargetDataVector3 TaskData;
-	TaskData.TaskType = EGMCAbilityTaskDataType::Progress;
+	TaskData.TaskType = EGMCAbilityTaskDataType::Progress_Task;
 	TaskData.AbilityID = Ability->GetAbilityID();
 	TaskData.TaskID = TaskID;
 	TaskData.Target = Target;

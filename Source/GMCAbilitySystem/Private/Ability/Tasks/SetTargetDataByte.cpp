@@ -34,7 +34,7 @@ void UGMCAbilityTask_SetTargetDataByte::ProgressTask(FInstancedStruct& TaskData)
 void UGMCAbilityTask_SetTargetDataByte::ClientProgressTask()
 {
 	FGMCAbilityTaskTargetDataByte TaskData;
-	TaskData.TaskType = EGMCAbilityTaskDataType::Progress;
+	TaskData.TaskType = EGMCAbilityTaskDataType::Progress_Task;
 	TaskData.AbilityID = Ability->GetAbilityID();
 	TaskData.TaskID = TaskID;
 	TaskData.Target = Target;

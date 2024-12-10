@@ -9,9 +9,9 @@
 UENUM()
 enum EGMCAbilityTaskDataType : uint8
 {
-	None,
-	Heartbeat,
-	Progress
+	Empty_Task,
+	Heartbeat_Task,
+	Progress_Task
 };
 
 
@@ -28,7 +28,7 @@ struct GMCABILITYSYSTEM_API FGMCAbilityTaskData
 	int TaskID{-1};
 
 	UPROPERTY()
-	TEnumAsByte<EGMCAbilityTaskDataType> TaskType{EGMCAbilityTaskDataType::None};
+	TEnumAsByte<EGMCAbilityTaskDataType> TaskType{EGMCAbilityTaskDataType::Empty_Task};
 	
 	bool operator==(const FGMCAbilityTaskData& Other) const {return AbilityID == Other.AbilityID && TaskID == Other.TaskID && TaskType == Other.TaskType;};
 	bool operator!=(const FGMCAbilityTaskData& Other) const {return AbilityID != Other.AbilityID || TaskID != Other.TaskID || TaskType != Other.TaskType;};

@@ -109,7 +109,7 @@ void UGMCAbilityTask_WaitForInputKeyRelease::ProgressTask(FInstancedStruct& Task
 void UGMCAbilityTask_WaitForInputKeyRelease::ClientProgressTask()
 {
 	FGMCAbilityTaskData TaskData;
-	TaskData.TaskType = EGMCAbilityTaskDataType::Progress;
+	TaskData.TaskType = EGMCAbilityTaskDataType::Progress_Task;
 	TaskData.AbilityID = Ability->GetAbilityID();
 	TaskData.TaskID = TaskID;
 	const FInstancedStruct TaskDataInstance = FInstancedStruct::Make(TaskData);

@@ -27,7 +27,7 @@ void UGMCAbilityTask_SetTargetDataGameplayTag::ProgressTask(FInstancedStruct& Ta
 
 void UGMCAbilityTask_SetTargetDataGameplayTag::ClientProgressTask(){
 	FGMCAbilityTaskTargetDataGameplayTag TaskData;
-	TaskData.TaskType = EGMCAbilityTaskDataType::Progress;
+	TaskData.TaskType = EGMCAbilityTaskDataType::Progress_Task;
 	TaskData.AbilityID = Ability->GetAbilityID();
 	TaskData.TaskID = TaskID;
 	TaskData.Target = Target;
